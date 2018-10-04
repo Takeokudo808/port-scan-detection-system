@@ -1,0 +1,21 @@
+Here is a code that will run straight in Git.
+
+To run this code in Git(in the directory that contains the ssh.log.txt file for the port-scan-detecion challenge), just copy and paste straight into Git then press Enter.
+
+file=ssh.log.txt
+scan_count=$(cat $file | grep -i nmap | wc -l)
+scanners=$(cat ssh.log.txt | grep -i nmap | awk -F ' ' '{print$3}' | sort -n | uniq)
+targets=$(cat ssh.log.txt | grep -i nmap | awk -F ' ' '{print$5}' | sort -n | uniq)
+
+main()
+{
+       echo "There are a total of ${scan_count} Nmap scan events."
+       echo
+       echo "Here are the list of scanners:"
+       echo $scanners
+       echo
+       echo "Here are the list of targets:"
+       echo $targets
+}
+
+main
